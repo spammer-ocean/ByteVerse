@@ -50,6 +50,11 @@ async def get_creditx_score(bank_summary: str, ais_summary: str, bureau_data: st
         ais_summary=ais_summary, 
         bureau_data=bureau_data
     ))
+
+    # try:
+    #     return json.loads(response["result"]["response"])
+    # except json.JSONDecodeError:
+    #     return {"error": "Invalid JSON", "raw_response": response["result"]["response"]}
     return response["result"]["response"]
 
 def load_memory():

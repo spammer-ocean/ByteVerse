@@ -15,7 +15,7 @@ def insert_request(user_id,org_id,loan_type,loan_description,ais_summary,bank_su
         "loan_type":loan_type,
         "ais_summary":ais_summary,
         "bank_summary":bank_summary,
-        "creditx_score":json.loads(creditx_score),
+        "creditx_score":creditx_score,
         "status":"pending"
     }
     response = supabase.table("Request").insert(data).execute()

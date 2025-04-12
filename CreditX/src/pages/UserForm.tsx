@@ -133,11 +133,11 @@ const UserForm = ({ userType }: UserFormProps) => {
         formDataToSend.append("org_id", "a3c5a7d8-0ce4-480e-8c5f-eb66f52d91ba");
         formDataToSend.append(
           "user_id",
-          "2a28b7da-9ddf-4197-ba12-e92ff01ad89d"
+          "db2771e3-74be-415d-815c-e01c9d69e999"
         );
         formDataToSend.append("loan_amount", formData.loanAmount);
 
-        const response = await api.post("/loan/submit", formDataToSend, {
+        const response = await api.post("http://localhost:4040/loan/submit", formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -150,8 +150,8 @@ const UserForm = ({ userType }: UserFormProps) => {
           description: "Your loan application has been submitted successfully.",
         });
 
-        // Redirect to dashboard
-        navigate("/dashboard");
+        // // Redirect to dashboard
+        // navigate("/");
       } catch (error) {
         console.error("Error submitting form data:", error);
         toast({
