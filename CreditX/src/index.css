@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 36% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 100% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 70%;
+
+    --accent: 220 70% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 18%;
+    --ring: 224 76% 48%;
+    
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217 33% 25%;
+    --sidebar-ring: 224 76% 48%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-accent/20 selection:text-white;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  /* Glass effect variants */
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-xl bg-black/40 border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-lg bg-black/30 border border-white/10 shadow-xl rounded-xl transition-all hover:shadow-[0_10px_40px_rgb(0,0,0,0.15)];
+  }
+  
+  .glass-section {
+    @apply backdrop-blur-md bg-black/20 border border-white/5 shadow-lg rounded-lg;
+  }
+  
+  .glass-premium {
+    @apply backdrop-blur-xl bg-white/5 border border-white/20 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] relative overflow-hidden;
+  }
+
+  
+  /* Neo-morphism variants */
+  .neo-card {
+    @apply bg-card/80 rounded-2xl border border-white/5 shadow-[5px_5px_15px_rgba(0,0,0,0.15),-5px_-5px_15px_rgba(255,255,255,0.02)];
+  }
+  
+  .neo-inset {
+    @apply bg-secondary/40 rounded-xl border border-white/5 shadow-[inset_3px_3px_8px_rgba(0,0,0,0.2),inset_-3px_-3px_8px_rgba(255,255,255,0.02)];
+  }
+  
+  /* Gradient effects */
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:p-[1px] before:rounded-2xl before:bg-gradient-to-br before:from-primary/50 before:to-accent/50 before:-z-10 before:content-[''];
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent;
+  }
+  
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary to-accent/80;
+  }
+  
+  .gradient-card-bg {
+    @apply after:absolute after:inset-0 after:bg-gradient-to-br after:from-primary/5 after:to-accent/5 after:rounded-2xl after:-z-10 after:opacity-50 after:blur-xl after:content-[''];
+  }
+  
+  /* Status and credit score indicators */
+  .status-badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .credit-score-high {
+    @apply text-credit-high;
+  }
+  
+  .credit-score-medium {
+    @apply text-credit-medium;
+  }
+  
+  .credit-score-low {
+    @apply text-credit-low;
+  }
+  
+  .credit-score-circle {
+    @apply relative flex items-center justify-center;
+  }
+
+  .credit-score-circle::before {
+    content: "";
+    @apply absolute inset-0 rounded-full opacity-10 backdrop-blur-sm;
+  }
+  
+  /* Animation utilities */
+  .animate-enter {
+    @apply opacity-0 translate-y-4;
+    animation: enter 0.4s ease-out forwards;
+  }
+  
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-blue {
+    @apply bg-gradient-to-br from-fintech-300 via-fintech-400 to-fintech-500 bg-clip-text text-transparent;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Keyframes */
+  @keyframes enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
