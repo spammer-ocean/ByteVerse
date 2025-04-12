@@ -12,6 +12,9 @@ import Chat from "./pages/chat";
 import UserDashboard from "./pages/UserDashboard";
 import UserForm from "./pages/UserForm";
 import Index from "./pages/Index";
+import FinancialPlanningForm from "./components/FinancialPlanningForm";
+import FinancialAdvisorChat from "./components/FinancialAdvisorChat ";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,8 +30,10 @@ const App = () => (
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/UserDashboard" element={<UserDashboard />} />
           <Route path="/chat/:userId" element={<Chat />} />
+          <Route path="/ragForm" element={<FinancialPlanningForm />} />
           <Route path="/users" element={<Userpage />} />
           <Route path="/report/:userId" element={<ReportPage />} />
+          <Route path="/chatFa" element={<FinancialAdvisorChat />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

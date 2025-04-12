@@ -58,6 +58,7 @@ const UserForm = ({ userType }: UserFormProps) => {
     loanAmount: "",
     loanPeriod: "",
   });
+ 
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (
@@ -151,7 +152,7 @@ const UserForm = ({ userType }: UserFormProps) => {
         });
 
         // // Redirect to dashboard
-        // navigate("/");
+        navigate("/");
       } catch (error) {
         console.error("Error submitting form data:", error);
         toast({

@@ -55,9 +55,9 @@ const Hero = () => {
                 Get Started Now <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/users">
+            <Link to="/ragForm">
               <Button variant="outline" size="lg" className="rounded-full border-white/20 hover:bg-white/5 hover:border-white/40 transition-all px-6 py-6">
-                For Financial Institutions
+              Financial Assitant <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
