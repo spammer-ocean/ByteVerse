@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
@@ -17,6 +16,13 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const navLinks = [
+    { text: "Features", href: "#features" },
+    { text: "How It Works", href: "#how-it-works" },
+    { text: "Benefits", href: "#benefits" },
+    { text: "Expense Analysis", href: "/expense-analysis" },
+  ];
 
   return (
     <header
@@ -35,9 +41,22 @@ const Navbar = () => {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="#features" className="text-sm text-white/80 hover:text-white transition-colors">Features</a>
-          <a href="#how-it-works" className="text-sm text-white/80 hover:text-white transition-colors">How It Works</a>
-          <a href="#benefits" className="text-sm text-white/80 hover:text-white transition-colors">Benefits</a>
+          {navLinks.map((link, index) => (
+            <Link
+              key={index}
+              to={link.href}
+              className="text-sm text-white/80 hover:text-white transition-colors"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                if (link.href.startsWith('#')) {
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              {link.text === "Expense Analysis" && <BarChart3 className="w-4 h-4 inline mr-1" />}
+              {link.text}
+            </Link>
+          ))}
           <Link to="/users" className="text-sm text-white/80 hover:text-white transition-colors">For Institutions</Link>
         </nav>
 
@@ -62,27 +81,22 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-lg absolute w-full border-b border-white/10 animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a 
-              href="#features" 
-              className="text-sm text-white/80 hover:text-white transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a 
-              href="#how-it-works" 
-              className="text-sm text-white/80 hover:text-white transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              How It Works
-            </a>
-            <a 
-              href="#benefits" 
-              className="text-sm text-white/80 hover:text-white transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Benefits
-            </a>
+            {navLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.href}
+                className="text-sm text-white/80 hover:text-white transition-colors py-2"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (link.href.startsWith('#')) {
+                    document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                {link.text === "Expense Analysis" && <BarChart3 className="w-4 h-4 inline mr-1" />}
+                {link.text}
+              </Link>
+            ))}
             <Link 
               to="/register/institution" 
               className="text-sm text-white/80 hover:text-white transition-colors py-2"
