@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart3, Shield, Clock, Activity } from 'lucide-react';
@@ -57,7 +56,12 @@ const Hero = () => {
             </Link>
             <Link to="/ragForm">
               <Button variant="outline" size="lg" className="rounded-full border-white/20 hover:bg-white/5 hover:border-white/40 transition-all px-6 py-6">
-              Financial Assitant <ArrowRight className="ml-2 h-4 w-4" />
+              Financial Assistant <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/welfare-schemes">
+              <Button variant="outline" size="lg" className="rounded-full border-white/20 hover:bg-white/5 hover:border-white/40 transition-all px-6 py-6">
+                Welfare Schemes <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
