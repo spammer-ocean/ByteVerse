@@ -89,8 +89,7 @@ const FinancialPlanningForm = () => {
   };
 
   const redirectToChat = () => {
-    // Navigate to chat interface with PAN card number as a parameter
-    navigate(`/chat/${encodeURIComponent(formData.pan_card_number)}`);
+    navigate(`/chatfa/${formData.pan_card_number}`);
   };
 
   useEffect(() => {

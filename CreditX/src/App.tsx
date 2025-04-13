@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/ragForm" element={<FinancialPlanningForm />} />
           <Route path="/users" element={<Userpage />} />
           <Route path="/report/:userId" element={<ReportPage />} />
-          <Route path="/chatFa" element={<FinancialAdvisorChat />} />
+          <Route path="/chatFa/:pancard" element={<FinancialAdvisorChat />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

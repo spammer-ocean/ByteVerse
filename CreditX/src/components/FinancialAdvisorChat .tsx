@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,46 +14,14 @@ interface Message {
 }
 
 const FinancialAdvisorChat = () => {
-  const { panCardId } = useParams<{ panCardId: string }>();
+  const { pancard } = useParams<{ pancard: string }>();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState<any>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
-  // Fetch user's financial profile data
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get(`/financial/profile/${panCardId}`);
-        setProfileData(response.data);
-        
-        // Add initial welcome message
-        setMessages([
-          {
-            id: 1,
-            text: `Hello! I'm your AI financial advisor. I've analyzed your financial profile, and I'm ready to help you make better financial decisions. What would you like to know about your finances today?`,
-            sender: 'bot',
-            timestamp: new Date()
-          }
-        ]);
-      } catch (error) {
-        console.error("Error fetching profile data:", error);
-        toast({
-          title: "Error",
-          description: "Could not load your financial profile. Please try again later.",
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    if (panCardId) {
-      fetchProfileData();
-    }
-  }, [panCardId]);
 
   // Scroll to the bottom of chat when messages change
   useEffect(() => {
@@ -63,7 +31,7 @@ const FinancialAdvisorChat = () => {
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!input.trim()) return;
+    if (!input.trim() || !pancard) return;
     
     const userMessage: Message = {
       id: messages.length + 1,
@@ -78,15 +46,15 @@ const FinancialAdvisorChat = () => {
     
     try {
       // Send user message to backend for AI processing
-      const response = await api.post('/financial/chat', {
+      const response = await api.post('http://localhost:4040/assistant/chat', {
         message: input,
-        panCardId: panCardId,
+        pan_card_number: pancard, // Using the URL parameter in the request
       });
       
       // Add AI response to chat
       const botMessage: Message = {
         id: messages.length + 2,
-        text: response.data.reply,
+        text: response.data.message, // Using the message field from response
         sender: 'bot',
         timestamp: new Date(),
       };
@@ -125,7 +93,7 @@ const FinancialAdvisorChat = () => {
           <div className="bg-white/5 p-4 border-b border-white/10">
             <h2 className="text-xl font-semibold text-white">Financial Advisor Chat</h2>
             <p className="text-white/70 text-sm">
-              {profileData ? `Profile: ${profileData.pan_card_number}` : "Loading profile..."}
+              {profileData ? `Profile: ${pancard}` : "Loading profile..."}
             </p>
           </div>
 
