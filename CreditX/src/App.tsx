@@ -15,6 +15,7 @@ import Index from "./pages/Index";
 import FinancialPlanningForm from "./components/FinancialPlanningForm";
 import FinancialAdvisorChat from "./components/FinancialAdvisorChat ";
 import ExpenseAnalysis from "./pages/ExpenseAnalysis";
+import WelfareScheme from "./pages/WelfareScheme";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/report/:userId" element={<ReportPage />} />
           <Route path="/chatFa/:pancard" element={<FinancialAdvisorChat />} />
           <Route path="/expense-analysis" element={<ExpenseAnalysis />} />
+          <Route path="/welfare-schemes" element={<WelfareScheme />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
