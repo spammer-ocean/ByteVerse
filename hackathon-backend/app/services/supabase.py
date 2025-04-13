@@ -7,6 +7,17 @@ key: str = SETTINGS.supabase_key
 
 supabase: Client = create_client(url, key)
 
+def get_financial_data_json(pan_card_number: str):
+    response = (
+        supabase
+        .table("financial_profiles")
+        .select("*")
+        .eq("pan_card_number", pan_card_number)
+        .execute()
+    )
+    return response
+
+
 def insert_financial_data(data: dict):
     response = supabase.table("financial_profiles").insert(data).execute()
     return response
